@@ -6,7 +6,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-import ListFridge from "./ListFridge/ListFridge";
+import FridgeList from "./Fridge/FridgeList";
+import FruitAndVegList from "./FruitAndVeg/FruitAndVegList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -82,13 +83,13 @@ export default function VerticalTabs() {
         Item One
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <ListFridge />
+        <FridgeList />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+        <FruitAndVegList />
       </TabPanel>
       <TabPanel value={value} index={4}>
         Item Five
