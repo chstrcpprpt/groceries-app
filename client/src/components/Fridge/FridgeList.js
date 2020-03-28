@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
-}
+};
 
 export default function ListFridge() {
   const [groceries, setGroceries] = useState([]);
@@ -41,6 +41,15 @@ export default function ListFridge() {
     console.log(groceries);
   }, []);
 
+  const updateItem = async (event, id) => {
+    event.stopPropagation();
+    const payload = {
+      isPurchased: !groceries.find(item => item._id === id).isPurchased
+    }
+    const updatedItem = await API.updateGrocery(id, payload);
+    setGroceries(groceries.map(item => (item._id === id ? updatedItem : item)))
+  };
+
   const classes = useStyles();
 
   return (
@@ -50,6 +59,8 @@ export default function ListFridge() {
           <ListItem 
             button
             key={i}
+            onClick={event => updateItem(event, _id)}
+            className={isPurchased ? "isPurchased" : ""}
           >
             <ListItemText className ={`to-purchase ${classes.shoppingItem}`} primary={item} />
 
@@ -65,6 +76,8 @@ export default function ListFridge() {
           <ListItem 
             button
             key={i}
+            onClick={event => updateItem(event, _id)}
+            className={isPurchased ? "isPurchased" : ""}
             >
             <ListItemText className ={`purchased ${classes.shoppingItem}`} primary={item} />
 
