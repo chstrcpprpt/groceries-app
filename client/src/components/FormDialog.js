@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
@@ -11,11 +11,11 @@ import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
 export default function FormDialog() {
   //modal state
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   //form state
-  const [section, setSection] = React.useState('');
+  const [section, setSection] = useState('');
   //item state
-  const [item, setItem] = React.useState('');
+  const [item, setItem] = useState('');
 
   //handle new item entered in form
   const handleItemChange = event => {
@@ -39,6 +39,10 @@ export default function FormDialog() {
 
   //sections for form
   const sections = [
+    {
+      value: '',
+      label: '',
+    },
     {
       value: 'Deli',
       label: 'Deli',
