@@ -15,7 +15,7 @@ function success(res, payload) {
 router.get('/', async (req, res, next) => {
   try {
     const groceries = await Groceries.find({})
-      .sort({date: -1})
+      .sort({item: 1})
     return success(res, groceries)
   } catch (err) {
     next(
