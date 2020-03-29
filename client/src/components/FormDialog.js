@@ -9,6 +9,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
+import API from "../API";
+
 export default function FormDialog() {
   //modal state
   const [open, setOpen] = useState(false);
@@ -36,6 +38,24 @@ export default function FormDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  //create item function
+  const createNewItem = async event => {
+    event.preventDefault();
+    if(!item) {
+      alert("Please enter a new item")
+      return
+    }
+    const newItem = 
+    {
+      "item": item,
+      "section": section,
+      "isPurchased": false
+    }
+    console.log(newItem);
+    await API.createGrocery(newItem);
+    handleClose();
+  }
 
   //sections for form
   const sections = [
@@ -129,7 +149,7 @@ export default function FormDialog() {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={createNewItem} color="primary">
             Add
           </Button>
         </DialogActions>

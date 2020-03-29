@@ -3,7 +3,7 @@ import axios from "axios";
 const API_URL = "/api/groceries";
 
 async function createGrocery(item) {
-  const { data: newGrocery } = await axios.post(API_URL, {item});
+  const { data: newGrocery } = await axios.post(API_URL, item);
   return newGrocery
 };
 
