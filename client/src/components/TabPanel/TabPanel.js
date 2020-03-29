@@ -6,14 +6,17 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-import FridgeList from "./Fridge/FridgeList";
-import FruitAndVegList from "./FruitAndVeg/FruitAndVegList";
+import FridgeList from "../Fridge/FridgeList";
+import FruitAndVegList from "../FruitAndVeg/FruitAndVegList";
+
+import "./TabPanel.css";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
     <Typography
+      // className="tab-list"
       component="div"
       role="tabpanel"
       hidden={value !== index}
@@ -48,6 +51,8 @@ const useStyles = makeStyles(theme => ({
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
+    backgroundColor: `rgb(185, 185, 185)`,
+    minHeight: `calc(100vh - 64px)`
   },
 }));
 
@@ -70,7 +75,7 @@ export default function VerticalTabs() {
         className={classes.tabs}
       >
         <Tab label="Deli" {...a11yProps(0)} />
-        <Tab label="Fridge" {...a11yProps(1)} />
+        <Tab label="Fridge" className="fridge" {...a11yProps(1)} />
         <Tab label="Frozen" {...a11yProps(2)} />
         <Tab label="Fruit & Veg" {...a11yProps(3)} />
         <Tab label="Household" {...a11yProps(4)} />

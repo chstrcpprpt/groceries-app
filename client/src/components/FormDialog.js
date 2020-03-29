@@ -104,7 +104,7 @@ export default function FormDialog() {
   return (
     <div>
       <IconButton aria-label="add">
-        <AddCircleRoundedIcon color="inherit" fontSize="large" onClick={handleClickOpen}/>
+        <AddCircleRoundedIcon color="secondary" fontSize="large" onClick={handleClickOpen}/>
       </IconButton>
 
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

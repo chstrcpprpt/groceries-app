@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+import 
+  { 
+    makeStyles,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Divider 
+  } 
+  from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import API from "../../API";
@@ -82,7 +86,7 @@ export default function ListFridge() {
             <ListItemText className ={`purchased ${classes.shoppingItem}`} primary={item} />
 
             <ListItemIcon>
-              <DeleteIcon className={classes.deleteBtn} fontSize="small" />
+              <DeleteIcon className={classes.deleteBtn} fontSize="small" color="primary"/>
             </ListItemIcon>
 
           </ListItem>
