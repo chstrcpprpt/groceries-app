@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 
 // location of api routes
 const groceries = require("./routes/api/groceries");
+// location of signin api routes
+const account = require("./routes/api/account");
 
 const app = express();
 
@@ -24,6 +26,8 @@ mongoose.connect(db,
 
 // Use routes - api/groceries/* will go to this file
 app.use("/api/groceries", groceries);
+// Use routes - api/account/* will go to this file
+app.use("/api/account", account);
 
 // START SERVER
 // Define port localhost:3001
