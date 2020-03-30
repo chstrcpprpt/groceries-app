@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
+const path = require("path");
 
 // location of api routes
 const groceries = require("./routes/api/groceries");
@@ -34,6 +35,16 @@ app.use("/api/groceries", groceries);
 app.use("/api/users", users);
 // Use routes - api/auth/* will go to this file
 app.use("/api/auth", auth);
+
+// Serve static assets if in production
+if(process.env.NODE_ENV === "production") {
+  //set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 // START SERVER
 // Define port localhost:3001
