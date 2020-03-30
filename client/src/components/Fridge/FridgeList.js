@@ -54,6 +54,14 @@ export default function ListFridge() {
     setGroceries(groceries.map(item => (item._id === id ? updatedItem : item)))
   };
 
+  const deleteItem = async (event, id) => {
+    try {
+      event.stopPropagation();
+      await API.deleteGrocery(id)
+      setGroceries(groceries.filter(({_id: i}) => id !== i))
+    } catch (err) {}
+  }
+
   const classes = useStyles();
 
   return (
@@ -86,7 +94,12 @@ export default function ListFridge() {
             <ListItemText className ={`purchased ${classes.shoppingItem}`} primary={item} />
 
             <ListItemIcon>
-              <DeleteIcon className={classes.deleteBtn} fontSize="small" color="primary"/>
+              <DeleteIcon 
+                className={classes.deleteBtn} 
+                fontSize="small" 
+                color="primary"
+                onClick={event => deleteItem(event, _id)}
+                />
             </ListItemIcon>
 
           </ListItem>

@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import FormDialog from './FormDialog';
+import Login from "./Login/Login";
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,6 +28,7 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+          <Login />
           <Typography variant="h3" className={classes.title}>
             groceries
           </Typography>
