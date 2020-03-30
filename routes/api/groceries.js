@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../../middleware/auth");
 
 // Item model
 const Groceries = require("../../models/Groceries");
@@ -27,8 +28,8 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// POST - add new grocery to list
-router.post('/', async (req, res, next) => {
+// POST - add new grocery to list || private
+router.post('/', auth, async (req, res, next) => {
   try {
     const grocery = await Groceries.create(req.body)
     return success(res, grocery)
@@ -42,8 +43,8 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// PUT - update grocery with matching id
-router.put("/:id", async (req, res, next) => {
+// PUT - update grocery with matching id || private
+router.put("/:id", auth, async (req, res, next) => {
   try {
     const grocery = await Groceries.findByIdAndUpdate(req.params.id, req.body, {new:true})
     return success(res, grocery)
@@ -57,8 +58,8 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-// DELETE - remove a grocery with matching id
-router.delete('/:id', async (req, res, next) => {
+// DELETE - remove a grocery with matching id || private
+router.delete('/:id', auth, async (req, res, next) => {
   try{
     await Groceries.findByIdAndRemove(req.params.id)
     return success(res, "grocery deleted")
