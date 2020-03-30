@@ -8,6 +8,13 @@ import Box from '@material-ui/core/Box';
 
 import FridgeList from "../Fridge/FridgeList";
 import FruitAndVegList from "../FruitAndVeg/FruitAndVegList";
+import DeliList from "../Deli/DeliList";
+import FrozenList from "../Frozen/FrozenList";
+import HouseholdList from "../Household/HouseholdList";
+import MeatsList from "../Meats/MeatsList";
+import PantryList from "../Pantry/PantryList";
+import PersonalCareList from "../PersonalCare/PersonalCareList";
+import OtherList from "../Other/OtherList";
 
 import "./TabPanel.css";
 
@@ -85,31 +92,31 @@ export default function VerticalTabs() {
         <Tab label="Other" {...a11yProps(8)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item One
+        <DeliList />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <FridgeList />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <FrozenList />
       </TabPanel>
       <TabPanel value={value} index={3}>
         <FruitAndVegList />
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five
+        <HouseholdList />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        Item Six
+        <MeatsList />
       </TabPanel>
       <TabPanel value={value} index={6}>
-        Item Seven
+        <PantryList />
       </TabPanel>
       <TabPanel value={value} index={7}>
-        Item Eight
+        <PersonalCareList />
       </TabPanel>
       <TabPanel value={value} index={8}>
-        Item Nine
+        <OtherList />
       </TabPanel>
     </div>
   );

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+import 
+  { 
+    makeStyles,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Divider 
+  } 
+  from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import API from "../../API";
@@ -27,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
-}
+};
 
 export default function ListFridge() {
   const [groceries, setGroceries] = useState([]);
@@ -41,6 +45,15 @@ export default function ListFridge() {
     console.log(groceries);
   }, []);
 
+  const updateItem = async (event, id) => {
+    event.stopPropagation();
+    const payload = {
+      isPurchased: !groceries.find(item => item._id === id).isPurchased
+    }
+    const updatedItem = await API.updateGrocery(id, payload);
+    setGroceries(groceries.map(item => (item._id === id ? updatedItem : item)))
+  };
+
   const classes = useStyles();
 
   return (
@@ -50,6 +63,8 @@ export default function ListFridge() {
           <ListItem 
             button
             key={i}
+            onClick={event => updateItem(event, _id)}
+            className={isPurchased ? "isPurchased" : ""}
           >
             <ListItemText className ={`to-purchase ${classes.shoppingItem}`} primary={item} />
 
@@ -65,11 +80,13 @@ export default function ListFridge() {
           <ListItem 
             button
             key={i}
+            onClick={event => updateItem(event, _id)}
+            className={isPurchased ? "isPurchased" : ""}
             >
             <ListItemText className ={`purchased ${classes.shoppingItem}`} primary={item} />
 
             <ListItemIcon>
-              <DeleteIcon className={classes.deleteBtn} fontSize="small" />
+              <DeleteIcon className={classes.deleteBtn} fontSize="small" color="primary"/>
             </ListItemIcon>
 
           </ListItem>

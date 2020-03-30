@@ -29,7 +29,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // POST - add new grocery to list || private
-router.post('/', auth, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const grocery = await Groceries.create(req.body)
     return success(res, grocery)

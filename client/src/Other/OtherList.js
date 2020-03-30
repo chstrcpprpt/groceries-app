@@ -12,7 +12,7 @@ import
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import API from "../../API";
-import "./PersonalCareList.css";
+import "./OtherList.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,7 +59,7 @@ export default function ListFridge() {
   return (
     <div className={classes.root}>
       <List component="nav" aria-label="main mailbox folders">
-        {groceries.filter(item => item.section === "Personal Care" && item.isPurchased === false).map(({_id, item, isPurchased}, i) => (
+        {groceries.filter(item => item.section === "Other" && item.isPurchased === false).map(({_id, item, isPurchased}, i) => (
           <ListItem 
             button
             key={i}
@@ -76,7 +76,7 @@ export default function ListFridge() {
       <Divider />
 
       <List component="nav" aria-label="secondary mailbox folders">
-        {groceries.filter(item => item.section === "Personal Care" && item.isPurchased === true).map(({_id, item, isPurchased}, i) => (
+        {groceries.filter(item => item.section === "Other" && item.isPurchased === true).map(({_id, item, isPurchased}, i) => (
           <ListItem 
             button
             key={i}
