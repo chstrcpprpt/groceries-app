@@ -44,7 +44,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // PUT - update grocery with matching id || private
-router.put("/:id", auth, async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const grocery = await Groceries.findByIdAndUpdate(req.params.id, req.body, {new:true})
     return success(res, grocery)
@@ -59,7 +59,7 @@ router.put("/:id", auth, async (req, res, next) => {
 });
 
 // DELETE - remove a grocery with matching id || private
-router.delete('/:id', auth, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try{
     await Groceries.findByIdAndRemove(req.params.id)
     return success(res, "grocery deleted")
