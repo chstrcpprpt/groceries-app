@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const config = require("config");
 
 // location of api routes
 const groceries = require("./routes/api/groceries");
 // location of signin api routes
-const account = require("./routes/api/account");
+const users = require("./routes/api/users");
 
 const app = express();
 
@@ -13,21 +14,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // DB config
-const db = require("./config/keys").mongoURI;
+const db = config.get("mongoURI");
 
 // Connect to mongoDB (the object avoids warnings)
 mongoose.connect(db, 
   {
     useUnifiedTopology: true,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useCreateIndex: true
   })
   .then(() => console.log("MongoDB connected..."))
   .catch(err => console.log(err));
 
 // Use routes - api/groceries/* will go to this file
 app.use("/api/groceries", groceries);
-// Use routes - api/account/* will go to this file
-app.use("/api/account", account);
+// Use routes - api/users/* will go to this file
+app.use("/api/users", users);
 
 // START SERVER
 // Define port localhost:3001
